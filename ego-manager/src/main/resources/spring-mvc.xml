@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd"
+>
+
+    <!-- 配置注解包扫描位置  -->
+    <context:component-scan base-package="org.oza.ego.manager"/>
+
+    <!-- 开启SpringMVC的注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 配置SpringMVC对静态资源的处理 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--文件上传解析器组件，名字必须为 multipartResolver-->
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设定默认编码-->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--文件上传的最大值 1MB-->
+        <property name="maxUploadSize" value="1048576"/>
+    </bean>
+
+
+</beans>
