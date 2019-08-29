@@ -26,8 +26,9 @@ public class TestSolrConnection {
     public void test() {
         try {
             SolrQuery solrQuery = new SolrQuery();
-            solrQuery.add("q", "hello");
+            solrQuery.add("q", "item_title:手机");
             QueryResponse response = httpSolrClient.query("ego", solrQuery);
+            System.out.println(response.getStatus());
             SolrDocumentList documents = response.getResults();
             System.out.println(documents);
         } catch (SolrServerException e) {
@@ -35,6 +36,11 @@ public class TestSolrConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testString() {
+        System.out.println("         ".trim().equals(""));
     }
 
 }

@@ -1,7 +1,7 @@
 package org.oza.ego.base.vo;
 
 /**
- * 用于封装搜索结果的对象
+ * 用于封装搜索内容的对象
  */
 public class SearchItem {
     private Long id;
