@@ -7,9 +7,12 @@ import org.oza.ego.base.mapper.ItemCatMapper;
 import org.oza.ego.base.pojo.ItemCat;
 import org.oza.ego.base.pojo.Menu;
 import org.oza.ego.base.pojo.MenuNode;
+import org.oza.ego.base.utils.JsonUtils;
 import org.oza.ego.rest.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.JedisCluster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +23,43 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Autowired
     private ItemCatMapper itemCatMapper;
 
+    @Autowired
+    private JedisCluster jedisCluster;
+
+    @Value("${jedis.menu.key}")
+    private String menuKey;
+
+    /**
+     * 使用 redis 缓存
+     * @return 菜单对象
+     */
     @Override
     public Menu initMenu() {
-        Menu menu = new Menu();
-        List nodes = getNodesByParentId(0L, 14); //所有一级节点的父ID为0
-        menu.setData(nodes);
+        Menu menu;
+
+        try {
+            //先从redis查询
+            String menuJson = jedisCluster.get(menuKey);
+            //判断是否有数据
+            if (null != menuJson) {
+                menu = JsonUtils.jsonToPojo(menuJson, Menu.class);
+            } else {
+                menu = new Menu();
+                List nodes = getNodesByParentId(0L, 14); //所有一级节点的父ID为0
+                menu.setData(nodes);
+                //将menu加入缓存
+                jedisCluster.set(menuKey, JsonUtils.objectToJson(menu));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //出现异常也要查询出数据
+            menu = new Menu();
+            List nodes = getNodesByParentId(0L, 14); //所有一级节点的父ID为0
+            menu.setData(nodes);
+            //将menu加入缓存
+            jedisCluster.set(menuKey, JsonUtils.objectToJson(menu));
+        }
+
         return menu;
     }
 

@@ -13,6 +13,7 @@
         <module>ego-manager</module>
         <module>ego-rest</module>
         <module>ego-portal</module>
+        <module>ego-search</module>
     </modules>
 
     <properties>

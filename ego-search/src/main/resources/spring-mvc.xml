@@ -7,21 +7,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <!--添加配置文件-->
-    <context:property-placeholder location="classpath:resources.properties" file-encoding="UTF-8"/>
-
     <!-- 开启SpringMVC的注解驱动 -->
     <mvc:annotation-driven/>
 
     <!--开启注解扫描-->
-    <context:component-scan base-package="org.oza.ego.portal"/>
-
-    <!-- 配置视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!-- 前缀 -->
-        <property name="prefix" value="/WEB-INF/view/"/>
-        <!-- 后缀 -->
-        <property name="suffix" value=".jsp"/>
-    </bean>
+    <context:component-scan base-package="org.oza.ego.search"/>
 
 </beans>

@@ -9,7 +9,9 @@ import org.oza.ego.base.vo.EUDataGridResult;
 import org.oza.ego.base.vo.EgoResult;
 import org.oza.ego.manager.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.JedisCluster;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -19,6 +21,12 @@ public class ContentServiceImpl implements ContentService {
 
     @Autowired
     private ContentMapper mapper;
+
+    @Autowired
+    private JedisCluster jedisCluster;
+
+    @Value("${jedis.content.key}")
+    private String jedisKey;
 
     @Override
     public EUDataGridResult listByCatIdAndPage(long categoryId, int page, int rows) {
@@ -41,6 +49,8 @@ public class ContentServiceImpl implements ContentService {
         content.setUpdated(content.getCreated());
 
         mapper.insert(content);
+        //清空缓存
+        jedisCluster.del(jedisKey);
 
         return EgoResult.ok(null);
     }
@@ -49,12 +59,16 @@ public class ContentServiceImpl implements ContentService {
     public EgoResult update(Content content) {
         content.setUpdated(new Date());
         mapper.updateById(content);
+        //清空缓存
+        jedisCluster.del(jedisKey);
         return EgoResult.ok(null);
     }
 
     @Override
     public EgoResult delete(Integer[] ids) {
         mapper.deleteBatchIds(Arrays.asList(ids));
+        //清空缓存
+        jedisCluster.del(jedisKey);
         return EgoResult.ok(null);
     }
 }

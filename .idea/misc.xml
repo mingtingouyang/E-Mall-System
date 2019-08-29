@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/ego-manager" />
     <file type="web" url="file://$PROJECT_DIR$/ego-portal" />
     <file type="web" url="file://$PROJECT_DIR$/ego-rest" />
+    <file type="web" url="file://$PROJECT_DIR$/ego-search" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
