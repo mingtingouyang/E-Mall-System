@@ -6,6 +6,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.oza.ego.base.mapper.ItemMapper;
+import org.oza.ego.base.pojo.Item;
 import org.oza.ego.base.vo.EgoResult;
 import org.oza.ego.base.vo.SearchItem;
 import org.oza.ego.base.vo.SearchResult;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -72,10 +74,48 @@ public class SearchServiceImpl implements SearchService {
         SolrQuery query = getSolrQuery(keyword, categoryName, price, page, sort);
         try {
             //执行搜索
-            QueryResponse response = httpSolrClient.query(query);
+            QueryResponse response = httpSolrClient.query("ego", query);
             //解析查询结果
             SolrDocumentList documents = response.getResults();
-            ///////////////////////
+            //设置商品总数量到搜索结果中
+            result.setRecordCount(documents.getNumFound());
+            //获取高亮的数据(没设置高亮则为空)
+            Map<String, Map<String, List<String>>> highlighting = response.getHighlighting();
+            //创建商品集合，准备封装至搜索结果
+            List<SearchItem> items = new ArrayList<>();
+            //解析文档，封装至集合
+            documents.forEach(document -> {
+                SearchItem item = new SearchItem();
+                //设置id
+                item.setId(Long.valueOf(String.valueOf(document.get("id"))));
+                //设置标题
+                if (null != highlighting) {
+                    //如果高亮不为空，获取当前文档的高亮标题
+                    Map<String, List<String>> highlightingMap = highlighting.get(document.get("id"));
+                    List<String> striList = highlightingMap.get("item_title");
+                    item.setTitle(striList.get(0));
+                } else {
+                    //没有高亮则直接设置标题
+                    item.setTitle(String.valueOf(document.get("item_title")));
+                }
+                //设置图片
+                item.setImage(String.valueOf(document.get("item_image")));
+                //设置销售亮点
+                item.setSellPoint(String.valueOf(document.get("item_sell_point")));
+                //设置类别名
+                item.setCategoryName(String.valueOf(document.get("item_category_name")));
+                //设置价格
+                item.setPrice(Double.valueOf(String.valueOf(document.get("item_price"))));
+
+                //添加进集合
+                items.add(item);
+            });
+            //将商品集合封装至结果
+            result.setItemList(items);
+            //设置当前页
+            result.setCurPage(page);
+            //设置总页数
+            result.setTotalPages((int)Math.ceil(1.0 * result.getRecordCount() / pageSize));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,9 +7,19 @@ public class SearchItem {
     private Long id;
     private String title;
     private String sellPoint;
-    private Long price;
+    private Double price;
     private String image;
     private String categoryName;
+    //用于解决多个图片的问题，上面的域 image 可能是多个图片
+    private String[] images;
+
+    public String[] getImages() {
+        //如果 image 不为空，则分出图片地址并赋值
+        if (null != image) {
+            images = image.split(",");
+        }
+        return images;
+    }
 
     public Long getId() {
         return id;
@@ -35,11 +45,11 @@ public class SearchItem {
         this.sellPoint = sellPoint;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

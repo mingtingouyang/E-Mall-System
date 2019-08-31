@@ -43,4 +43,11 @@ public class TestSolrConnection {
         System.out.println("         ".trim().equals(""));
     }
 
+    @Test
+    public void testCulc() {
+        int a = 1;
+        int b = 2;
+        double c = a * 1.0 / b;
+        System.out.println(c);
+    }
 }
