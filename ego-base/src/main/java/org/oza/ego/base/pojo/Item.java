@@ -25,6 +25,14 @@ public class Item {
     private Byte status;
     private Date created;
     private Date updated;
+    @TableField(exist = false)
+    private String[] images;
+
+    public String[] getImages() {
+        if (null != this.image)
+            images =  image.split(",");
+        return images;
+    }
 
     public Long getId() {
         return id;

@@ -52,6 +52,25 @@
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-solrj</artifactId>
         </dependency>
+        <!--ActiveMQ-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+        <!--spring-jms-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+        </dependency>
+        <!--jms-api-->
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>javax.jms-api</artifactId>
+        </dependency>
         <!--test-->
         <dependency>
             <groupId>org.springframework</groupId>

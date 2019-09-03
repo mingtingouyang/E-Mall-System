@@ -54,17 +54,17 @@ public class HttpClientUtils {
             e.printStackTrace();
         } finally {
             //关闭资源
-            if (null != response) {
-                try {
+            try {
+                if (null != response)
                     response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (null != httpClient)
+                        httpClient.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    try {
-                        httpClient.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }
@@ -110,17 +110,17 @@ public class HttpClientUtils {
             e.printStackTrace();
         } finally {
             //关闭资源
-            if (null != response) {
-                try {
+            try {
+                if (null != response)
                     response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (null != httpClient)
+                        httpClient.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    try {
-                        httpClient.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }

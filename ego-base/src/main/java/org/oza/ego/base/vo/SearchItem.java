@@ -1,9 +1,13 @@
 package org.oza.ego.base.vo;
 
+import java.io.Serializable;
+
 /**
  * 用于封装搜索内容的对象
  */
-public class SearchItem {
+public class SearchItem implements Serializable {
+
+    private static final long serialVersionUID = 3726627530476135960L;
     private Long id;
     private String title;
     private String sellPoint;

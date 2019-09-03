@@ -14,6 +14,13 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+    /**
+     * 根据关键字和当前页数执行搜索，并将结果放入 Model 中
+     * @param q 关键字
+     * @param page 当前页数，默认值是 1
+     * @param m Model 对象
+     * @return 对应的视图名
+     */
     @RequestMapping("/search")
     public String query(String q, @RequestParam(defaultValue = "1") Integer page, Model m) {
         SearchResult result = searchService.query(q, page);

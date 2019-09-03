@@ -16,6 +16,10 @@ public class SearchController {
     @Autowired
     private SearchService service;
 
+    /**
+     * 导入所有商品进 solr 服务
+     * @return 操作结果
+     */
     @RequestMapping("/import/all")
     @ResponseBody
     public EgoResult createIndex() {
@@ -23,6 +27,15 @@ public class SearchController {
         return egoResult;
     }
 
+    /**
+     * 执行搜索
+     * @param keyword 关键字
+     * @param categoryName 类名
+     * @param price 价格区间
+     * @param page 当前页
+     * @param sort 排序规则
+     * @return 搜索结果对象
+     */
     @GetMapping("/doSearch")
     @ResponseBody
     public SearchResult doSearch(String keyword, String categoryName, String price, @RequestParam(defaultValue = "1") Integer page, Integer sort) {
