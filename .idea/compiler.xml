@@ -8,9 +8,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ego-rest" />
         <module name="ego-search" />
-        <module name="ego-manager" />
-        <module name="ego-base" />
         <module name="ego-portal" />
+        <module name="ego-sso" />
+        <module name="ego-base" />
+        <module name="ego-manager" />
       </profile>
     </annotationProcessing>
   </component>

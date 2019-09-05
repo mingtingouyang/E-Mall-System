@@ -40,12 +40,12 @@
 			<input type="hidden" name="orderItems[${status.index}].picPath" value="${cart.images[0]}"/>
 		</c:forEach>
 		<input type="hidden" name="payment" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${totalPrice/100 }"/>"/>
-		<input type="hidden" name="orderShipping.receiverName" value="老魏"/>
-		<input type="hidden" name="orderShipping.receiverMobile" value="18666666666"/>
+		<input type="hidden" name="orderShipping.receiverName" value="${loginUser.username }"/>
+		<input type="hidden" name="orderShipping.receiverMobile" value="${loginUser.phone }"/>
 		<input type="hidden" name="orderShipping.receiverState" value="广东"/>
-		<input type="hidden" name="orderShipping.receiverCity" value="广州"/>
-		<input type="hidden" name="orderShipping.receiverDistrict" value="天河区"/>
-		<input type="hidden" name="orderShipping.receiverAddress" value="元岗横路 慧通产业广场"/>
+		<input type="hidden" name="orderShipping.receiverCity" value="惠州"/>
+		<input type="hidden" name="orderShipping.receiverDistrict" value="惠城区"/>
+		<input type="hidden" name="orderShipping.receiverAddress" value="东江明珠花园"/>
 </form>
 
 <!-- main -->
@@ -84,8 +84,8 @@
 							<div class="fr">${loginUser.phone } </div>
 							<div class="clr"></div>
 						</div>
-						<div class="mt10" limit="15">广东省广州市天河区</div>
-						<div class="adr-m" limit="30">天河慧通产业广场B区1栋6楼广州尚学堂</div>
+						<div class="mt10" limit="15">广东省惠州市惠城区</div>
+						<div class="adr-m" limit="30">东江明珠花园</div>
 						<div class="op-btns ar">
 							<a href="#none"
 								class="ftx-05 mr10 setdefault-consignee hide"

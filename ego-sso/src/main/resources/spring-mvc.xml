@@ -7,14 +7,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <!--添加配置文件-->
-    <context:property-placeholder location="classpath:resources.properties" file-encoding="UTF-8"/>
+
+    <!--注解扫描-->
+    <context:component-scan base-package="org.oza.ego.sso"/>
 
     <!-- 开启SpringMVC的注解驱动 -->
     <mvc:annotation-driven/>
-
-    <!--开启注解扫描-->
-    <context:component-scan base-package="org.oza.ego.portal"/>
 
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,14 +21,5 @@
         <!-- 后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>
-
-    <!--加载拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--指定拦截的路劲（所有和订单相关的页面）-->
-            <mvc:mapping path="/order/**"/>
-            <bean class="org.oza.ego.portal.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
 
 </beans>
