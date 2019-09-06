@@ -1,6 +1,5 @@
 package org.oza.ego.rest.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.oza.ego.base.mapper.ContentMapper;
 import org.oza.ego.base.pojo.Content;

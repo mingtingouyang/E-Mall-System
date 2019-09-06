@@ -15,6 +15,7 @@
         <module>ego-portal</module>
         <module>ego-search</module>
         <module>ego-sso</module>
+        <module>ego-order</module>
     </modules>
 
     <properties>
