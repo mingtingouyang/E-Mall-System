@@ -27,7 +27,7 @@
         <property name="blockWhenExhausted" value="false"/>
     </bean>
 
-    <!--配饰redis cluster 集群-->
+    <!--配置redis cluster 集群-->
     <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
         <!--cluster 集合-->
         <constructor-arg name="nodes">
