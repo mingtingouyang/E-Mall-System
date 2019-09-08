@@ -3,6 +3,8 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/ego-manager" />
+    <file type="web" url="file://$PROJECT_DIR$/ego-portal" />
+    <file type="web" url="file://$PROJECT_DIR$/ego-sso" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -10,6 +12,10 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ego-manager/pom.xml" />
         <option value="$PROJECT_DIR$/ego-rest/pom.xml" />
+        <option value="$PROJECT_DIR$/ego-search/pom.xml" />
+        <option value="$PROJECT_DIR$/ego-sso/pom.xml" />
+        <option value="$PROJECT_DIR$/ego-order/pom.xml" />
+        <option value="$PROJECT_DIR$/ego-portal/pom.xml" />
       </list>
     </option>
   </component>
