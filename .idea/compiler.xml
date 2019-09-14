@@ -8,17 +8,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ego-rest" />
         <module name="ego-search" />
-        <module name="ego-portal" />
-        <module name="ego-sso" />
-        <module name="ego-order" />
-        <module name="ego-base" />
         <module name="ego-manager" />
+        <module name="ego-sso" />
+        <module name="ego-base" />
+        <module name="ego-eureka2" />
+        <module name="ego-eureka1" />
+        <module name="ego-order" />
+        <module name="ego-portal" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ego-base" options="-parameters" />
+      <module name="ego-eureka1" options="-parameters" />
+      <module name="ego-eureka2" options="-parameters" />
       <module name="ego-manager" options="-parameters" />
       <module name="ego-order" options="-parameters" />
       <module name="ego-portal" options="-parameters" />

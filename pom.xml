@@ -17,8 +17,13 @@
     <version>2.0-SNAPSHOT</version>
     <modules>
         <module>ego-base</module>
+        <module>ego-order</module>
+        <module>ego-portal</module>
+        <module>ego-search</module>
         <module>ego-manager</module>
         <module>ego-rest</module>
+        <module>ego-sso</module>
+        <module>ego-eureka1</module>
     </modules>
 
 
@@ -128,8 +133,6 @@
                 <artifactId>activemq-pool</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
-            <!--jms-api-->
-
         </dependencies>
     </dependencyManagement>
 

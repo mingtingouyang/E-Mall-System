@@ -1,7 +1,9 @@
 package org.oza.ego.portal.controller;
 
 import org.oza.ego.base.vo.CartItem;
+import org.oza.ego.base.vo.EgoResult;
 import org.oza.ego.base.vo.OrderDetail;
+import org.oza.ego.portal.api.OrderServiceApi;
 import org.oza.ego.portal.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +27,10 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    //feign远程调用借口接口
+    @Autowired
+    private OrderServiceApi orderServiceApi;
+
     @Value("${cookie.cart}")
     private String cartCookieName;
 
@@ -44,7 +50,10 @@ public class OrderController {
     public String save(OrderDetail order, Model model, HttpServletResponse response) {
         String orderId = null;
         try {
-            orderId = orderService.save(order);
+            /*orderId = orderService.save(order);*/
+            //改用feign调用接口
+            EgoResult egoResult = orderServiceApi.save(order);
+            orderId = String.valueOf(egoResult.getData());
             //成功添加订单后
             if (null != orderId) {
                 model.addAttribute("orderId", orderId);
